@@ -40,8 +40,10 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchPreAndroid11();
-                //launchPostAndroid11();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
+                    launchPostAndroid11();
+                else
+                    launchPreAndroid11();
             }
         });
     }
