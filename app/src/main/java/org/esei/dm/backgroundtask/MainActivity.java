@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    class MyAsyncTask extends AsyncTask<URL,Double,String> {
+    class MyAsyncTask extends AsyncTask<Void,Void,String> {
 
         private Context activity;
         private String result;
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        protected String doInBackground(URL... urls) {
+        protected String doInBackground(Void... voids) {
             return performGet();
         }
 
@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
             InputStreamReader isr = new InputStreamReader(is);
             BufferedReader reader = new BufferedReader(isr);
             String line = "";
-
             while( ( line = reader.readLine() ) != null ) {
                 toret.append( line );
             }
@@ -123,13 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void launchPreAndroid11(){
         task = new MyAsyncTask(MainActivity.this);
-        URL url = null;
-        try {
-            url = new URL( "http://api.geonames.org/timezoneJSON?lat=42.34&lng=-7.86&username=dispositivos_moviles" );
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        task.execute(url);
+        task.execute();
     }
 
     private String launchPostAndroid11() {
